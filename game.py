@@ -59,6 +59,41 @@ def BattleEpic(enemy, player):
 
 
 
+def Adventure(player):
+	while True:
+		print("What are you going to do?")
+		print("")
+		print("[ l:Look Around | m:Move Forward \n"
+			"[ i:Inventory | p:Player Info")
+		print("")
+		answer = input(">>> ")
+			if answer == "l":
+				print("")
+				print("You look around...")
+				LookAround()
+			if answer == "p":
+				print("")
+				print(player)
+			if answer == "m":
+				print("You decided to move forward")
+				moveForward()
+
+def RandomRoll():
+	rand = random.randint(1,101)
+	random = random.randint(1, 101)
+	if rand == random:
+		return 
+
+
+def LookAround():
+	print("Where would you like to look?")
+		print("")
+		print("[ g:Ground | s:Sky | e:Elsewhere")
+		print("")
+		answer = input(">>>")
+		if answer == "g":
+
+
 def introStory():
 	inputName = input("Enter Your Name Adventurer: ")
 	player = characters.Warrior("plunger", "{}".format(inputName), 100, 100, 0, 100)
@@ -73,7 +108,9 @@ def introStory():
 	input("Press Enter to Get up from your long sleep...")
 	print("")
 
-	BattleMode(player)
+	Adventure()
+
+	#BattleMode(player)			#start battle
 
 ###############
 #### GAME #####
