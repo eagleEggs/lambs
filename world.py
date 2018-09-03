@@ -1,5 +1,5 @@
 import random
-
+import game
 
 
 class World():
@@ -10,6 +10,10 @@ class World():
 		self.chests = chests
 		self.monsters = monsters
 		self.hiddenItems = hiddenItems
+
+		@property
+		def levels(self):
+			return self.__levels
 
 	def __repr__(self):
 		return "Levels: {}".format(self.levels)
@@ -37,39 +41,50 @@ class Biomes():
 		self.biome = self.biomeList[biome]
 
 
-def generateWorld():
-	generate = World(10, 3, 1, 3, 3, 5)
+def GenerateWorld(generatedWorld):
 
 	level = []									# set up level array
 
+	generated = generatedWorld
+
+	empties = 0
+	bosses = 0
+	chests = 0
+	monsters = 0
+	hItems = 0
+
 	#bossPlaced = 0
-	iterate = generate.levels
+	iterate = int(generated.levels)
 	while iterate > 0:
 		for lev in range(0, iterate):					# replace array with random entities
 			pick = random.randint(1, 6)
 			if pick == 1:
 				level.append("E")
+				empties = empties + 1
 				iterate = iterate - 1
 			#if pick == 2 and bossPlaced == 0:           # originally set for one boss per level
 			if pick == 2:
 				level.append("B")
 				#bossPlaced = 1
+				bosses = bosses + 1
 				iterate = iterate - 1
 			if pick == 3:
 				level.append("C")
+				chests = chests + 1
 				iterate = iterate - 1
 			if pick == 4:
 				level.append("M")
+				monsters = monsters + 1
 				iterate = iterate - 1
 			if pick == 5:
 				level.append("H")
+				hItems = hItems + 1
 				iterate = iterate - 1
 
-	print(level)
-
-
-
-generateWorld()
-
-#levelOptions = ["O", "M", "H","B","C"]
-
+	print("World Generated: {}".format(level))
+	print("Levels: {}, Empties: {}, Bosses: {}, Chests: {}, Monsters: {}, Hidden Items: {}".format(generated.levels, empties, bosses, chests, monsters, hItems))
+	print("")
+	regen = input("Regenerate? (y/n)")
+	print("")
+	if regen == "y":
+		game.Setup()
