@@ -2,6 +2,7 @@ import time
 import random
 from colorama import init, Fore, Back, Style
 import characters
+import world
 
 
 
@@ -67,16 +68,16 @@ def Adventure(player):
 			"[ i:Inventory | p:Player Info")
 		print("")
 		answer = input(">>> ")
-			if answer == "l":
-				print("")
-				print("You look around...")
-				LookAround()
-			if answer == "p":
-				print("")
-				print(player)
-			if answer == "m":
-				print("You decided to move forward")
-				moveForward()
+		if answer == "l":
+			print("")
+			print("You look around...")
+			LookAround()
+		if answer == "p":
+			print("")
+			print(player)
+		if answer == "m":
+			print("You decided to move forward")
+			#moveForward()
 
 def RandomRoll():
 	rand = random.randint(1,101)
@@ -87,11 +88,11 @@ def RandomRoll():
 
 def LookAround():
 	print("Where would you like to look?")
-		print("")
-		print("[ g:Ground | s:Sky | e:Elsewhere")
-		print("")
-		answer = input(">>>")
-		if answer == "g":
+	print("")
+	print("[ g:Ground | s:Sky | e:Elsewhere")
+	print("")
+	answer = input(">>>")
+	#if answer == "g":
 
 
 def introStory():
@@ -99,18 +100,36 @@ def introStory():
 	player = characters.Warrior("plunger", "{}".format(inputName), 100, 100, 0, 100)
 	#print(player.weapon.damage)
 	print("")
-	inputSize = input("Choose your map size:")
-	mapSize = inputSize
-	print("")
 
 	print("You begin your adventure {}, \nupon waking amidst the showing rain of the darkest forest...".format(inputName))
 	print("")
 	input("Press Enter to Get up from your long sleep...")
 	print("")
 
-	Adventure()
+	#Adventure()
 
-	#BattleMode(player)			#start battle
+	BattleMode(player)			#start battle
+
+def Setup():
+	print("Setup:")
+	print("")
+	worldType = input("Auto Generate [A], or Manual World Generation [M]?")
+	print("")
+	if worldType == "a":
+		generatedWorld = world.World(random.randint(1,99),random.randint(1,99),random.randint(1,99),random.randint(1,99),random.randint(1,99),random.randint(1,99))
+		world.GenerateWorld(generatedWorld)
+	if worldType == "m":
+		nLevels = input("Enter number of Levels: ")
+		nEmpty = input("Enter number of Empty Levels :")
+		nBosses = input("Enter number of Bosses: ")
+		nChests = input("Enter number of Chests: ")
+		nMonsters = input("Enter number of Monsters: ")
+		nHiddenItems = input("Enter number of Hidden Items: ")
+
+		generatedWorld = world.World(nLevels, nEmpty, nBosses, nChests, nMonsters, nHiddenItems)
+
+		world.GenerateWorld(generatedWorld)
+
 
 ###############
 #### GAME #####
@@ -124,6 +143,8 @@ if __name__ == '__main__':
 
 	# ask for paths to take
 	init(autoreset=True)
+
+	Setup()
 	introStory()
 
 	# loop
