@@ -47,6 +47,12 @@ def GenerateWorld(generatedWorld):
 
 	generated = generatedWorld
 
+	empties = 0
+	bosses = 0
+	chests = 0
+	monsters = 0
+	hItems = 0
+
 	#bossPlaced = 0
 	iterate = int(generated.levels)
 	while iterate > 0:
@@ -54,24 +60,31 @@ def GenerateWorld(generatedWorld):
 			pick = random.randint(1, 6)
 			if pick == 1:
 				level.append("E")
+				empties = empties + 1
 				iterate = iterate - 1
 			#if pick == 2 and bossPlaced == 0:           # originally set for one boss per level
 			if pick == 2:
 				level.append("B")
 				#bossPlaced = 1
+				bosses = bosses + 1
 				iterate = iterate - 1
 			if pick == 3:
 				level.append("C")
+				chests = chests + 1
 				iterate = iterate - 1
 			if pick == 4:
 				level.append("M")
+				monsters = monsters + 1
 				iterate = iterate - 1
 			if pick == 5:
 				level.append("H")
+				hItems = hItems + 1
 				iterate = iterate - 1
 
-	print("world Generated: {}".format(level))
+	print("World Generated: {}".format(level))
+	print("Levels: {}, Empties: {}, Bosses: {}, Chests: {}, Monsters: {}, Hidden Items: {}".format(generated.levels, empties, bosses, chests, monsters, hItems))
 	print("")
 	regen = input("Regenerate? (y/n)")
+	print("")
 	if regen == "y":
 		game.Setup()

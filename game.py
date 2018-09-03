@@ -3,6 +3,7 @@ import random
 from colorama import init, Fore, Back, Style
 import characters
 import world
+import logo
 
 
 
@@ -113,7 +114,7 @@ def introStory():
 def Setup():
 	print("Setup:")
 	print("")
-	worldType = input("Auto Generate [A], or Manual World Generation [M]?")
+	worldType = input("Auto Generate [a], or Manual World Generation [m]?")
 	print("")
 	if worldType == "a":
 		generatedWorld = world.World(random.randint(1,99),random.randint(1,99),random.randint(1,99),random.randint(1,99),random.randint(1,99),random.randint(1,99))
@@ -125,6 +126,9 @@ def Setup():
 		nChests = input("Enter number of Chests: ")
 		nMonsters = input("Enter number of Monsters: ")
 		nHiddenItems = input("Enter number of Hidden Items: ")
+		print("")
+	else:
+		Setup()
 
 		generatedWorld = world.World(nLevels, nEmpty, nBosses, nChests, nMonsters, nHiddenItems)
 
