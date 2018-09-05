@@ -22,6 +22,72 @@ class World():
 		return "Levels: {}".format(self.levels)
 
 
+class Map(World):
+
+
+	def __init_(self, home, castle, emptyHorizontal, filledHorizontal):
+		self.char = self.char
+		self.home = self.mapHouse
+		self.casle = self.mapCastle
+		self.emptyHorizontal = self.mapEmptyHorizontal
+		self.filledHorizontal = self.mapFilledHorizontal
+
+	def mapHome():
+
+
+		print("""\
+
+  /\ 
+ /  \ 
+/    \ 
+| __ | 
+|_||_| 
+ home
+	""")
+
+
+
+	def mapCastle():
+
+		print("""
+		___  ___  ___ 
+		| |__| |__| | 
+		|           | 
+		| O  ___  O | 
+		|  /     \  | 
+		|__|_____|__| 
+		   castle 
+				""")
+
+	def mapEmptyHorizontal():
+
+		print("""
+    _
+    _""")
+
+
+
+	def mapFilledHorizontal(key):
+
+		mapFilledHorizontal = """
+	_
+	""""{}".format(key)
+		print (mapFilledHorizontal)
+
+
+
+
+	# | |__________             # ______________| |
+	# |	 ___B______C|			# _____C____M_____|
+	# |M|						#
+								#
+
+
+
+
+
+
+
 class Biomes():
 
 	biomeList = {
@@ -81,8 +147,14 @@ def GenerateWorld(generatedWorld):
 				hItems = hItems + 1
 				iterate = iterate - 1
 
-	print("World Generated: {}".format(level))
+	print("World Generated: \n{}".format(level))
+	print("")
+	Map.mapHome()
+	Map.mapCastle()
+	Map.mapEmptyHorizontal()
+	print("")
 	print("Levels: {}, Empties: {}, Bosses: {}, Chests: {}, Monsters: {}, Hidden Items: {}".format(generated.levels, empties, bosses, chests, monsters, hItems))
+	print("")
 	print("")
 	regen = input("Regenerate? (y/n)")
 	print("")

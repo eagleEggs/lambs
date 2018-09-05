@@ -1,9 +1,9 @@
 import time
 import random
-from colorama import init, Fore, Back, Style
 import characters
 import world
 import logo
+import inventory
 
 
 
@@ -27,7 +27,7 @@ def BattleMode(player):
 	battleSuspense()
 	enemy = characters.Vampire(1,1,"Vampire",10,99, 0, 400)
 	print("")
-	print (Fore.RED + "It's a {}!!!".format(enemy.name))
+	print ("It's a {}!!!".format(enemy.name))
 	print("")
 	#generate random enemy
 	BattleEpic(enemy, player)
@@ -62,6 +62,9 @@ def BattleEpic(enemy, player):
 
 
 def Adventure(player):
+
+	#for levels in world.
+
 	while True:
 		print("What are you going to do?")
 		print("")
@@ -107,9 +110,9 @@ def introStory():
 	input("Press Enter to Get up from your long sleep...")
 	print("")
 
-	#Adventure()
+	Adventure()
 
-	BattleMode(player)			#start battle
+	#BattleMode(player)			#start battle
 
 def Setup():
 	print("Setup:")
@@ -126,13 +129,10 @@ def Setup():
 		nChests = input("Enter number of Chests: ")
 		nMonsters = input("Enter number of Monsters: ")
 		nHiddenItems = input("Enter number of Hidden Items: ")
-		print("")
-	else:
-		Setup()
-
+		
 		generatedWorld = world.World(nLevels, nEmpty, nBosses, nChests, nMonsters, nHiddenItems)
-
 		world.GenerateWorld(generatedWorld)
+		print("")
 
 
 ###############
@@ -146,7 +146,6 @@ if __name__ == '__main__':
 	# display current map info
 
 	# ask for paths to take
-	init(autoreset=True)
 
 	Setup()
 	introStory()

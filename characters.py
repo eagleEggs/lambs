@@ -1,5 +1,6 @@
 import weapons
 
+
 class Character(object):
 	
 	def __init__(self, name, health, magic, fatigue, attack):
