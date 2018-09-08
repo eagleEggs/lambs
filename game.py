@@ -1,67 +1,16 @@
 import time
 import random
-from colorama import init, Fore, Back, Style
 import characters
 import world
 import logo
-
-
-
-def battleSuspense():
-
-	begin = 1
-	end = random.randint(2,10)
-	suspense = range(begin, end)
-	timeString = '.'*end
-	print (timeString)
-	for i in suspense:
-		time.sleep(0.5)
-		end = end-1
-		timeString = '.'*end
-		print(timeString)
-
-
-def BattleMode(player):
-	print("You hear something coming closer...")
-	print("")
-	battleSuspense()
-	enemy = characters.Vampire(1,1,"Vampire",10,99, 0, 400)
-	print("")
-	print (Fore.RED + "It's a {}!!!".format(enemy.name))
-	print("")
-	#generate random enemy
-	BattleEpic(enemy, player)
-
-
-def BattleEpic(enemy, player):
-
-	while enemy.health > 0:
-		
-		# turn based
-
-		print("What are you going to do?")
-		print("")
-		print("[ e:Attack | s:Retreat \n"
-			"[ i:Inventory | p:Player Info \n"
-			"[v:Assess Enemy]")
-		print("")
-		answer = input(">>> ")
-		if answer == "e":
-			print("")
-			print("You Attacked {}".format(enemy.name))
-			print("")
-			player.attacks(player, enemy)
-			print("")
-			print("{} health damaged to  {}".format(enemy.name, enemy.health))
-		if answer == "p":
-			print("")
-			print(player)
-		if answer == "v":
-			print(enemy)
+import inventory
+import cards
+import battle
 
 
 
 def Adventure(player):
+
 	while True:
 		print("What are you going to do?")
 		print("")
@@ -93,26 +42,27 @@ def LookAround():
 	print("[ g:Ground | s:Sky | e:Elsewhere")
 	print("")
 	answer = input(">>>")
-	#if answer == "g":
 
 
-def introStory():
-	inputName = input("Enter Your Name Adventurer: ")
-	player = characters.Warrior("plunger", "{}".format(inputName), 100, 100, 0, 100)
-	#print(player.weapon.damage)
-	print("")
-
-	print("You begin your adventure {}, \nupon waking amidst the showing rain of the darkest forest...".format(inputName))
+def introStory(player):
+	print("You begin your adventure {}, \nupon waking amidst the showing rain of the darkest forest...".format(player.name))
 	print("")
 	input("Press Enter to Get up from your long sleep...")
 	print("")
 
-	#Adventure()
+	battle.BattleSetup(player, 3)
 
-	BattleMode(player)			#start battle
 
 def Setup():
-	print("Setup:")
+	print("")
+	inputName = input("Enter Your Name Adventurer: ")
+	print("")
+	print("Choose your Class:")
+	print("w | Warrior")
+	print("")
+	classChoice = input(">")
+	if classChoice == "w":
+		player = characters.Warrior("plunger", "{}".format(inputName), 100, 100, 0, 100, 1)
 	print("")
 	worldType = input("Auto Generate [a], or Manual World Generation [m]?")
 	print("")
@@ -126,13 +76,12 @@ def Setup():
 		nChests = input("Enter number of Chests: ")
 		nMonsters = input("Enter number of Monsters: ")
 		nHiddenItems = input("Enter number of Hidden Items: ")
-		print("")
-	else:
-		Setup()
-
+		
 		generatedWorld = world.World(nLevels, nEmpty, nBosses, nChests, nMonsters, nHiddenItems)
-
 		world.GenerateWorld(generatedWorld)
+		print("")
+
+	introStory(player)
 
 
 ###############
@@ -141,15 +90,15 @@ def Setup():
 
 if __name__ == '__main__':
 
-	# load map options
-
-	# display current map info
-
-	# ask for paths to take
-	init(autoreset=True)
-
 	Setup()
-	introStory()
+
+
+
+
+
+	#########
+	###POC###
+	#########
 
 	# loop
 
