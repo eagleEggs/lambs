@@ -149,10 +149,6 @@ def GenerateWorld(generatedWorld):
 
 	print("World Generated: \n{}".format(level))
 	print("")
-	Map.mapHome()
-	Map.mapCastle()
-	Map.mapEmptyHorizontal()
-	print("")
 	print("Levels: {}, Empties: {}, Bosses: {}, Chests: {}, Monsters: {}, Hidden Items: {}".format(generated.levels, empties, bosses, chests, monsters, hItems))
 	print("")
 	print("")
