@@ -53,8 +53,8 @@ class BattleSetup(BattlePrep):
 				print("{} health damaged to  {}".format(enemyFinal, enemy.health))
 			if answer == "p":
 				print("")
-			player.card()
+				player.card()
 			if answer == "v":
-				enemy.card()
+				enemy.avatar()
 
 

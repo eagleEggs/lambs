@@ -50,6 +50,17 @@ class Vampire(Character):
 		print("{} Attacks!".format(self.name))
 		other.health -= int(+1)
 
+	def avatar(self):
+		print("""\
+             ^--^
+	    |-_-|
+	   (     )
+	  |      |
+	 |       |
+	|       |
+	""")
+		self.card()
+
 	def __repr__(self):
 		return "Enemy Name: {}, Health:{}".format(self.name, self.health)
 
@@ -69,6 +80,15 @@ class Blob(Character):
 
 	def duplicate(self, amount):					# this will divide blob heatlh by total number of separations
 		self.health = self.health / amount
+
+	def avatar(self):
+		print("""\
+
+	  ./ -_-\.
+	    ____/
+
+""")
+		self.card()
 		
 
 class Mold(Character):
@@ -84,6 +104,16 @@ class Mold(Character):
 
 	def grow(self):
 		self.attack + 10
+
+	def avatar(self):
+		print("""\
+	   |^^^^|
+	   / 0.o|
+	  <      >
+	   \<__>/
+
+	   """)
+		self.card()
 
 
 class Warrior(Character):
